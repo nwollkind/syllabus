@@ -39,10 +39,10 @@ function bundle() {
         .pipe(gulp.dest("build"));
 }
 
-gulp.task("watch-and-compile", function() {
+gulp.task("compile-and-watch", function() {
     return bundle();
 });
 
-gulp.task("default", ["watch-resources", "watch-and-compile"]);
+gulp.task("default", ["copy-resources", "watch-resources", "compile-and-watch"]);
 watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", gutil.log);
