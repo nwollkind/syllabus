@@ -25,7 +25,7 @@ gulp.task("copy-resources", function () {
         .pipe(gulp.dest("build"));
 });
 
-gulp.task("watch-resources", function() {
+gulp.task("watch-resources", ["copy-resources"], function() {
     gulp.watch(resourcesGlob, ["copy-resources"]);
 });
 
@@ -43,6 +43,6 @@ gulp.task("compile-and-watch", function() {
     return bundle();
 });
 
-gulp.task("default", ["copy-resources", "watch-resources", "compile-and-watch"]);
+gulp.task("default", ["watch-resources", "compile-and-watch"]);
 watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", gutil.log);
